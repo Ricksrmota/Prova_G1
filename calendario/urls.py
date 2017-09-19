@@ -15,7 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from agenda.views import listaAgenda
+from agenda.views import listaAgendaFeriados
+from agenda.views import get_evento_byID
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^agendascadastradas/',listaAgenda,name="Lista Agenda"),
+    url(r'agendaferiado/',listaAgendaFeriados,name="Lista Feriados"),
+    url(r'^agenda/([0-9]{1})/',get_evento_byID),
+
 ]
