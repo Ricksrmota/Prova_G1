@@ -18,9 +18,10 @@ class Usuario(models.Model):
     def __str__(self):
         return self.nome
 
-class Convidados(models.Model):
+class Convite(models.Model):
     nome = models.ForeignKey(Usuario, null=True, blank=True, related_name='NomeUsuarioConvidado')
     compromisso = models.ForeignKey(Agenda, null=True, blank=True, related_name='compromissoUsuarioConvidado')
+    status = models.CharField(max_length=128,blank=False, null=False)
     def __str__(self):
         return self.nome.iduser
     
@@ -28,7 +29,7 @@ class Convidados(models.Model):
 class UsuarioAgenda(models.Model):
     nome = models.ForeignKey(Usuario, null=True, blank=True, related_name='NomeUsuario')
     compromisso = models.ForeignKey(Agenda, null=True, blank=True, related_name='compromissoUsuario')
-    convidados = models.ForeignKey(Convidados)
+    convidados = models.ForeignKey(Convite)
     
 
 
