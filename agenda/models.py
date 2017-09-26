@@ -29,7 +29,7 @@ class Convite(models.Model):
 class UsuarioAgenda(models.Model):
     nome = models.ForeignKey(Usuario, null=True, blank=True, related_name='NomeUsuario')
     compromisso = models.ForeignKey(Agenda, null=True, blank=True, related_name='compromissoUsuario')
-    convidados = models.ForeignKey(Convite)
+    convidados = models.ForeignKey(Convite, null=True, blank=True)
     
 
 
