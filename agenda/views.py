@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from agenda.models import Agenda
-from agenda.models import AgendaInstituicao
 from agenda.models import UsuarioAgenda
 from django.http import HttpResponse
 
@@ -16,9 +15,10 @@ def listaAgenda(request):
 
 def listaAgendaFeriados(request):
     retorno = "<h1>Feriados</h1>"
-    lista = AgendaInstituicao.objects.all()
+    lista = Agenda.objects.all()
     for agenda in lista:
-        retorno += '</br>Data do Feriado: {}</br>'.format(agenda.compromisso)
+        if agenda.institucional == True:
+            retorno += '</br>Data do Feriado: {}</br>'.format(agenda.compromisso) + '{}'.format(agenda.descricao)
     return HttpResponse(retorno)
 
 def get_evento_byID(request,id):

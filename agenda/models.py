@@ -18,9 +18,17 @@ class Usuario(models.Model):
     def __str__(self):
         return self.nome
 
+class Convidados(models.Model):
+    nome = models.ForeignKey(Usuario, null=True, blank=True, related_name='NomeUsuarioConvidado')
+    compromisso = models.ForeignKey(Agenda, null=True, blank=True, related_name='compromissoUsuarioConvidado')
+    def __str__(self):
+        return self.nome.iduser
+    
+
 class UsuarioAgenda(models.Model):
     nome = models.ForeignKey(Usuario, null=True, blank=True, related_name='NomeUsuario')
     compromisso = models.ForeignKey(Agenda, null=True, blank=True, related_name='compromissoUsuario')
-    convidados = models.ManyToManyField('Usuario')
+    convidados = models.ForeignKey(Convidados)
+    
 
 
