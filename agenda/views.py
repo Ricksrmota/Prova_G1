@@ -2,8 +2,16 @@ from django.shortcuts import render
 from agenda.models import Agenda
 from agenda.models import UsuarioAgenda
 from django.http import HttpResponse
+from rest_framework import routers, serializers, viewsets
+from django.contrib.auth.models import User
+from agenda.serializers import UserSerializer
+from django.conf.urls import url
 
 # Create your views here.
+
+class UserViewSet(viewsets.ModelViewSet):
+	queryset = User.objects.all()
+	serializer_class = UserSerializer
 
 
 def listaAgenda(request):
